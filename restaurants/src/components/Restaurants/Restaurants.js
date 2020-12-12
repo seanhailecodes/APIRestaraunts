@@ -7,9 +7,6 @@ export default class Restaurants extends Component {
             <ul>
                 {this.renderItems()}
             </ul>
-            <div>
-                
-            </div>
         )
     }
 }
