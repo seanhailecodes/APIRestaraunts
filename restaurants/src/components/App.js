@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3 className='App-title'> Charter's Code Test - Restaurants</h3>
+        <h3 className='App-title'> Charter's Code Test - Restaurants <Restaurants /></h3>
+      
       </header>
-      <Restaurants />
     </div>
   );
 }

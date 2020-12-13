@@ -22,19 +22,28 @@ export default class Restaurants extends Component {
         .then((response) => {
             return response.json()
         })
-        .then((data) => {console.log(data)
-           
-        })
+        .then((data) => {
+            this.setState({
+                restaurants: data 
+            })
 
+    } )
+}
+
+renderItems(){
+    return this.state.restaurants.map((data) => (
+        <NewItem key={data.id} item={data} />
+    ))
 }
 
     render() {
-
-        
+       
 
         return (
             <div>
-                
+                <ul>
+                    {this.renderItems()}
+                </ul>
             </div>
         )
     }
