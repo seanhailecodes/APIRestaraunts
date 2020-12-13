@@ -8,4 +8,4 @@ const  NewItem = ({item}) => (
     </li>
 )
 
-export default NewItem;
+export default NewItem; 
