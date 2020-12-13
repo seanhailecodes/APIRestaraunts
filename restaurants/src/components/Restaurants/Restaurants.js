@@ -10,9 +10,14 @@ export default class Restaurants extends Component {
     }
 
     componentDidMount() {
-        const url = 'https://code-challenge.spectrumtoolbox.com/api/restaurants&Api-Key q3MNxtfep8Gt'
+        const url = 'https://code-challenge.spectrumtoolbox.com/api/restaurants'
+        const API_KEY = 'Api-Key q3MNxtfep8Gt'
 
-        fetch(url)
+        fetch(url, {
+            headers: {
+                Authorization: API_KEY,
+            }
+        } )
             .then((response) => {
                 return response.json()
             })
