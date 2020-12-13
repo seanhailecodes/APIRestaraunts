@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './App.css';
 import Restaurants from './Restaurants/Restaurants.js'
-require('dotenv').config();
 
-console.log(process.env)
+require('dotenv').config();
 
 function App() {
   return (
