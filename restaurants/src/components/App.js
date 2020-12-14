@@ -1,4 +1,5 @@
 import React from 'react';
+import Restaurants from './Restaurants/Restaurants';
 import GetRestaurants from './Restaurants/GetRestaurants';
 
 
@@ -60,7 +61,7 @@ class App extends React.Component {
                     getRestaurants={this.GetRestaurants}
                 />
 
-                <AllRestaurants
+                <Restaurants
                     restaurants={currentItems}
 
                 />
