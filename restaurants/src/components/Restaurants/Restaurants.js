@@ -30,9 +30,10 @@ export default class Restaurants extends Component {
             .catch((error) => console.log(error))
     }
 
+
     renderItems() {
         return this.state.restaurants.map((data) => (
-            <NewItem key={data.id} item={data} />
+            <NewItem key={data.id} item={data} key={data.state.genre} item={data} />
         ))
     }
 
