@@ -1,12 +1,13 @@
 
 import React from 'react';
+import _ from 'lodash';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        restaurants: [],
+        item: [],
         states: [],        
     };
 
@@ -26,8 +27,7 @@ class App extends React.Component {
             return response.json()
         })
         .then((data) => {
-            this.setState({
-                restaurants: data
+            const restaurants = _.
             })
         })
         .catch((error) => console.log(error))
