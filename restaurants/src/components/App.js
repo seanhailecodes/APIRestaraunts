@@ -8,8 +8,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3 className='App-title'> Charter's Code Test - Restaurants <Restaurants /></h3>
-
+        <input type ='button' />
+        <h3 className='App-title'> Charter's Code Test - Restaurants </h3>
+        <Restaurants />
       </header>
     </div>
   );
