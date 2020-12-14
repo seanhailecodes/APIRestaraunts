@@ -5,70 +5,70 @@ import GetRestaurants from './Restaurants/GetRestaurants';
 
 class App extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: [],
-            states: [],
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      states: [],
+    };
 
 
-        //bind
-        this.getRestaurants = this.getRestaurants.bind(this);
+    //bind
+    this.getRestaurants = this.getRestaurants.bind(this);
 
-    }
-    getRestaurants() {
-        this.setState({
+  }
+  getRestaurants() {
+    this.setState({
 
-        });
+    });
 
-    }
+  }
 
-    componentDidMount() {
+  componentDidMount() {
 
-        let url = 'https://code-challenge.spectrumtoolbox.com/api/restaurants'
-        let API_KEY = 'Api-Key q3MNxtfep8Gt'
+    let url = 'https://code-challenge.spectrumtoolbox.com/api/restaurants'
+    let API_KEY = 'Api-Key q3MNxtfep8Gt'
 
-        fetch(url, {
-            headers: {
-                Authorization: API_KEY,
-            }
+    fetch(url, {
+      headers: {
+        Authorization: API_KEY,
+      }
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        const restaurants = result.map(item => {
+          return item
         })
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                const restaurants = result.map(item => {
-                    return item
-                })
 
-                this.setState({
-                    items: restaurants,
-                })
+        this.setState({
+          items: restaurants,
+        })
 
-            })
-            .catch((error) => console.log(error))
-    }
+      })
+      .catch((error) => console.log(error))
+  }
 
-    render() {
-        const { items } = this.state
+  render() {
+    const { items } = this.state
 
 
-        return (
+    return (
 
-            <div>
-                <GetRestaurants
-                    getRestaurants={this.GetRestaurants}
-                />
+      <div>
+        <GetRestaurants
+          getRestaurants={this.GetRestaurants}
+        />
 
-                <Restaurants
-                    restaurants={currentItems}
+        <Restaurants
+          restaurants={currentItems}
 
-                />
-            </div>
+        />
+      </div>
 
-        );
-    }
+    );
+  }
 }
 
 export default App;

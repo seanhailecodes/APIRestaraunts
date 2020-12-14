@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
 
 
-const Table = styled.table`
-width: 100%;
-margin: 0 1%;
-justify-content: center;
-display: block;
-align-items: center;
-font-size: 1rem;
-`
-
-
 class Restaurants extends Component {
 
     render() {
 
         const isEmpty = this.props.restaurants.length === 0;
         const data = this.props.restaurants;
-          
+
         const columns = ['Name', 'City', 'State', 'Telephone', 'Genre']
         return (
             <div className="mb-3 item-list" >
@@ -51,9 +41,6 @@ class Restaurants extends Component {
                     </Table>
 
                 }
-
-
-                
 
             </div>
         )
