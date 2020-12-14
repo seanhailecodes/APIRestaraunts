@@ -1,19 +1,21 @@
 
 import React from 'react';
+import GetRestaurants from 'GetRestaurants';
 import _ from 'lodash';
+
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        item: [],
+        items: [],
         states: [],        
     };
 
 
     //bind
-  
+    this.getRestaurants = this.getRestaurants.bind(this);
 
     }
 
@@ -50,8 +52,10 @@ class App extends React.Component {
     return (
 
         <div>
-    
-    </div>
+                <GetRestaurants
+                  getRestaurants={this.GetRestaurants}
+                  />
+        </div>
 
     );
   }
