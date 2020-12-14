@@ -27,8 +27,10 @@ class App extends React.Component {
             return response.json()
         })
         .then((data) => {
-            const restaurants = _.
+            const restaurants = _.map(item =>{
+                return item
             })
+          
         })
         .catch((error) => console.log(error))
 }
