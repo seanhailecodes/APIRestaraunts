@@ -1,6 +1,6 @@
 import React from 'react';
 
-const  NewItem = ({item}) => (
+const NewItem = ({ item }) => (
     <li>
         <p>
             {item.name}

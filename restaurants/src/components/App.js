@@ -1,20 +1,73 @@
-import React, { Component } from 'react'
-import './App.css';
-import Restaurants from './Restaurants/Restaurants.js'
+import React from 'react';
+import GetRestaurants from './Restaurants/GetRestaurants';
 
-require('dotenv').config();
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <input type ='button' />
-        <h3 className='App-title'> Charter's Code Test - Restaurants </h3>
-        <Restaurants />
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [],
+            states: [],
+        };
+
+
+        //bind
+        this.getRestaurants = this.getRestaurants.bind(this);
+
+    }
+    getRestaurants() {
+        this.setState({
+
+        });
+
+    }
+
+    componentDidMount() {
+
+        let url = 'https://code-challenge.spectrumtoolbox.com/api/restaurants'
+        let API_KEY = 'Api-Key q3MNxtfep8Gt'
+
+        fetch(url, {
+            headers: {
+                Authorization: API_KEY,
+            }
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                const restaurants = result.map(item => {
+                    return item
+                })
+
+                this.setState({
+                    items: restaurants,
+                })
+
+            })
+            .catch((error) => console.log(error))
+    }
+
+    render() {
+        const { items } = this.state
+
+
+        return (
+
+            <div>
+                <GetRestaurants
+                    getRestaurants={this.GetRestaurants}
+                />
+
+                <AllRestaurants
+                    restaurants={currentItems}
+
+                />
+            </div>
+
+        );
+    }
 }
 
 export default App;
- 
