@@ -30,6 +30,10 @@ class App extends React.Component {
             const restaurants = _.map(item =>{
                 return item
             })
+        
+            this.setState({
+                items: restaurants,
+            })
           
         })
         .catch((error) => console.log(error))
