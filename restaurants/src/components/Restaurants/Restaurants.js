@@ -6,6 +6,7 @@ export default class Restaurants extends Component {
         super(props)
         this.state = {
             restaurants: [],
+            states: [],
         }
     }
 
