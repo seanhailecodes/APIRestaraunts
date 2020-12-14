@@ -11,7 +11,11 @@ class App extends React.Component {
         states: [],        
     };
 
-  }
+
+    //bind
+  
+
+    }
 
   componentDidMount() {
 
@@ -40,17 +44,13 @@ class App extends React.Component {
 }
 
   render() {
-
- 
-
-  
-
+    const { items } = this.state
 
 
     return (
 
-        <div className='row'>
-        {/* {this.renderItems()} */}
+        <div>
+    
     </div>
 
     );
