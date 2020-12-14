@@ -1,71 +1,205 @@
-import React from 'react';
-import Restaurants from './Restaurants/Restaurants';
-import GetRestaurants from './Restaurants/GetRestaurants';
+import React, { useState, useEffect } from 'react';
+
+
+import GetRestaurants from './componnents/GetRestaurants';
+import Restaurants from './componnents/Restaurants';
+import Pagination from './componnents/Pagination';
+
 
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       items: [],
       states: [],
+      genres: [],
+      isLoaded: false,
+      orderBy: 'name',
+      orderDir: 'asc',
+      byState: 'All',
+      byGenre: 'All',
+      queryText: '',
+      currentPage: 1,
+      itemsPerPage: 10
     };
 
 
-    //bind
-    this.getRestaurants = this.getRestaurants.bind(this);
+    this.filterByState = this.filterByState.bind(this);
+    this.filterByGenre = this.filterByGenre.bind(this);
+    this.searchRestaurants = this.searchRestaurants.bind(this);
+    this.setCurrentPage = this.setCurrentPage.bind(this);
 
   }
-  getRestaurants() {
+
+  setCurrentPage(currentPage) {
     this.setState({
-
+      currentPage: currentPage
     });
-
   }
 
+
+  filterByState(byState) {
+    this.setState({
+      byState: byState,
+      currentPage: 1
+    });
+  }
+
+  filterByGenre(byGenre) {
+    this.setState({
+      byGenre: byGenre,
+      currentPage: 1
+    });
+  }
+
+  searchRestaurants(guery) {
+    this.setState({
+      queryText: guery,
+      currentPage: 1
+    });
+  }
+
+
+
+
+ 
   componentDidMount() {
-
-    let url = 'https://code-challenge.spectrumtoolbox.com/api/restaurants'
-    let API_KEY = 'Api-Key q3MNxtfep8Gt'
-
-    fetch(url, {
+    fetch("https://code-challenge.spectrumtoolbox.com/api/restaurants", {
       headers: {
-        Authorization: API_KEY,
-      }
+        Authorization: "Api-Key q3MNxtfep8Gt",
+      },
     })
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
+      .then(res => res.json())
+      .then(result => {
+
         const restaurants = result.map(item => {
-          return item
-        })
+          return item;
+        });
+
+        const states = result.map(item => item.state)
+        let uniqueAndSortedStates = [...new Set(states)].sort()
+        uniqueAndSortedStates.unshift("All");
+
+        const genres = result.map(item => item.genre.split(",")).flat()
+        let uniqueAndSortedGenres = [...new Set(genres)].sort()
+        uniqueAndSortedGenres.unshift("All")
+
+
+
 
         this.setState({
           items: restaurants,
-        })
-
-      })
-      .catch((error) => console.log(error))
+          states: uniqueAndSortedStates,
+          genres: uniqueAndSortedGenres,
+          isLoaded: true,
+        });
+      }).catch((err) => {
+        console.log(err);
+      });
   }
 
+
+
   render() {
-    const { items } = this.state
+
+    const { isLoaded, items, states, genres, itemsPerPage, currentPage } = this.state;
+
+
+    let order;
+    let sortedItems = this.state.items;
+
+    if (this.state.orderDir === 'asc') {
+      order = 1;
+    } else {
+      order = -1;
+    }
+
+    sortedItems = sortedItems.sort((a, b) => {
+      if (a[this.state.orderBy].toLowerCase() <
+        b[this.state.orderBy].toLowerCase()
+      ) {
+        return -1 * order;
+      } else {
+        return 1 * order;
+      }
+    }).filter(eachItem => {
+      return (
+
+        eachItem['name']
+          .toLowerCase()
+          .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['city']
+          .toLowerCase()
+          .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['genre']
+          .toLowerCase()
+          .includes(this.state.queryText.toLowerCase())
+      );
+    });
+
+    let sortedFilteredItems = ''
+    if (this.state.byState === 'All') {
+      sortedFilteredItems = sortedItems;
+    } else {
+      sortedFilteredItems = sortedItems.filter(item => item.state === this.state.byState);
+    }
+   
+    if (this.state.byGenre === 'All') {
+      sortedFilteredItems = sortedFilteredItems;
+    } else {
+      sortedFilteredItems = sortedFilteredItems.filter(item => item.genre.toLowerCase()
+        .includes(this.state.byGenre.toLowerCase()));
+    }
+
+    if (!isLoaded)
+      return <div>One Moment Please</div>;
+
+    let indexOfLastItem = this.state.currentPage * itemsPerPage;
+    let indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    let currentItems = sortedFilteredItems.slice(indexOfFirstItem, indexOfLastItem)
+
 
 
     return (
 
-      <div>
-        <GetRestaurants
-          getRestaurants={this.GetRestaurants}
-        />
+      <main className='page bg-white' id='ratings'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-mid-12 bg-white'>
+              <div className='container'>
+                <GetRestaurants
+                  states={states}
+                  genres={genres}
 
-        <Restaurants
-          restaurants={currentItems}
+                  byState={this.state.byState}
+                  byGenre={this.state.byGenre}
 
-        />
-      </div>
+                  filterByState={this.filterByState}
+                  filterByGenre={this.filterByGenre}
+                  searchRestaurants={this.searchRestaurants}
+                />
+                <Restaurants
+                  restaurants={currentItems}
+
+                />
+                <Pagination
+                  currentPage={this.state.currentPage}
+                  itemsPerPage={itemsPerPage}
+                  totalItems={sortedFilteredItems.length}
+
+                  setCurrentPage={this.setCurrentPage}
+
+                />
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
 
     );
   }
