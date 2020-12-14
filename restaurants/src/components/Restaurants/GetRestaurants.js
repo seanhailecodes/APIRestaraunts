@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
-
-
-const Search = styled.div`
-width: 100%;
-margin: 0 auto;
-`
-
-const Filter = styled.div`
-width: 100%;
-margin: 0 1%;
-`
 
 class SearchRestaurants extends Component {
 
