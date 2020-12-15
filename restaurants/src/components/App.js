@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/App.css';
+import '../css/App.scss';
 import SearchRestaurants from './SearchRestaurants';
 import AllRestaurants from './AllRestaurants';
 import Pagination from './Pagination';
