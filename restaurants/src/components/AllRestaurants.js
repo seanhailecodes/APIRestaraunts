@@ -1,5 +1,5 @@
 import React, { Component } from './node_modules/react';
-import { FaBeer } from "./node_modules/react-icons/fa";
+// import { FaBeer } from "./node_modules/react-icons/fa";
 import styled from './node_modules/styled-components';
 
 
@@ -20,7 +20,6 @@ class AllRestaurants extends Component {
         const isEmpty = this.props.restaurants.length === 0;
         console.log(isEmpty)
         const data = this.props.restaurants;
-        // console.log(data)
         const columns = ['Name', 'City', 'State', 'Telephone', 'Genre']
         return (
             <div className="mb-3 item-list" >
