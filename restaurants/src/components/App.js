@@ -55,7 +55,7 @@ class App extends React.Component {
     });
   }
 
-  searchRestaurants(guery) {
+  searchRestaurants(guery, keyCode) {
     this.setState({
       queryText: guery,
       currentPage: 1

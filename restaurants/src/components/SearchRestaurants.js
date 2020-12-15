@@ -26,12 +26,16 @@ class SearchRestaurants extends Component {
             <Search className="search-restaurants row justify-content-center my-4">
                 <div className="col-md-10">
                     <div className="input-group">
+                        
                         <input
+                        
                             id="SearchRestaurants"
                             type="text"
                             className="form-control"
                             aria-label="Search Restaurants"
-                            onChange={e => this.props.searchRestaurants(e.target.value)}
+                            onKeyDown={e => this.props.searchRestaurants(e.target.value, e.keyCode)}
+
+                            
                         />
                         <div className="input-group-append">
 
