@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/App.scss';
+// import '../css/App.scss';
 import SearchRestaurants from './SearchRestaurants';
 import AllRestaurants from './AllRestaurants';
 import Pagination from './Pagination';
@@ -21,7 +21,7 @@ class App extends React.Component {
       byGenre: 'All',
       queryText: '',
       currentPage: 1,
-      itemsPerPage: 9
+      itemsPerPage: 10
     };
 
 

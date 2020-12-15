@@ -1,6 +1,6 @@
-import React, { Component } from './node_modules/react';
-// import { FaBeer } from "./node_modules/react-icons/fa";
-import styled from './node_modules/styled-components';
+import React, { Component } from 'react';
+// import { FaBeer } from "react-icons/fa";
+import styled from 'styled-components';
 
 
 const Table = styled.table`
@@ -20,6 +20,7 @@ class AllRestaurants extends Component {
         const isEmpty = this.props.restaurants.length === 0;
         console.log(isEmpty)
         const data = this.props.restaurants;
+        console.log(data)
         const columns = ['Name', 'City', 'State', 'Telephone', 'Genre']
         return (
             <div className="mb-3 item-list" >
@@ -53,6 +54,15 @@ class AllRestaurants extends Component {
                     </Table>
 
                 }
+
+
+                {/* {this.props.restaurants.map(item => (
+                    <div key={item.id} className='container text-center'>
+                        <FaBeer />
+                        <h3>Name: {item.name} | City: {item.city} | State: {item.state}  </h3>
+                        <h4>Phone Number: {item.telephone} | Genre: {item.genre}</h4>
+                    </div>
+                ))} */}
 
             </div>
         )
