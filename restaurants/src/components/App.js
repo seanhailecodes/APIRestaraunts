@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
-
-import GetRestaurants from './componnents/GetRestaurants';
-import Restaurants from './componnents/Restaurants';
-import Pagination from './componnents/Pagination';
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/App.css';
+import SearchRestaurants from './SearchRestaurants';
+import AllRestaurants from './AllRestaurants';
+import Pagination from './Pagination';
 
 class App extends React.Component {
 
@@ -23,7 +21,7 @@ class App extends React.Component {
       byGenre: 'All',
       queryText: '',
       currentPage: 1,
-      itemsPerPage: 10
+      itemsPerPage: 9
     };
 
 
@@ -62,10 +60,6 @@ class App extends React.Component {
     });
   }
 
-
-
-
- 
   componentDidMount() {
     fetch("https://code-challenge.spectrumtoolbox.com/api/restaurants", {
       headers: {
@@ -87,9 +81,6 @@ class App extends React.Component {
         let uniqueAndSortedGenres = [...new Set(genres)].sort()
         uniqueAndSortedGenres.unshift("All")
 
-
-
-
         this.setState({
           items: restaurants,
           states: uniqueAndSortedStates,
@@ -102,11 +93,9 @@ class App extends React.Component {
   }
 
 
-
   render() {
 
     const { isLoaded, items, states, genres, itemsPerPage, currentPage } = this.state;
-
 
     let order;
     let sortedItems = this.state.items;
@@ -146,7 +135,6 @@ class App extends React.Component {
     } else {
       sortedFilteredItems = sortedItems.filter(item => item.state === this.state.byState);
     }
-   
     if (this.state.byGenre === 'All') {
       sortedFilteredItems = sortedFilteredItems;
     } else {
@@ -155,14 +143,12 @@ class App extends React.Component {
     }
 
     if (!isLoaded)
-      return <div>One Moment Please</div>;
+      return <div>Loading...</div>;
 
     let indexOfLastItem = this.state.currentPage * itemsPerPage;
     let indexOfFirstItem = indexOfLastItem - itemsPerPage;
     let currentItems = sortedFilteredItems.slice(indexOfFirstItem, indexOfLastItem)
-
-
-
+    
     return (
 
       <main className='page bg-white' id='ratings'>
@@ -170,7 +156,7 @@ class App extends React.Component {
           <div className='row'>
             <div className='col-mid-12 bg-white'>
               <div className='container'>
-                <GetRestaurants
+                <SearchRestaurants
                   states={states}
                   genres={genres}
 
@@ -181,7 +167,7 @@ class App extends React.Component {
                   filterByGenre={this.filterByGenre}
                   searchRestaurants={this.searchRestaurants}
                 />
-                <Restaurants
+                <AllRestaurants
                   restaurants={currentItems}
 
                 />

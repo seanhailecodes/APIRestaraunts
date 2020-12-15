@@ -1,5 +1,5 @@
-import React, { Component } from './node_modules/react';
-import styled from './node_modules/styled-components';
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
 const Nav = styled.nav`
 justify-content: center;
@@ -8,14 +8,14 @@ margin: 0 auto;
 align-items: center;
 font-size: 1;
 &:hover{
-    background-color: #001D37;
+    background-color: red;
 }
 `
 const Ul = styled.ul`
 display: flex;
 justify-content: center;
 & li{
-    margin: 0 0.3;
+    margin: 0 0.3rem;
 }
 `
 
