@@ -34,19 +34,20 @@ class SearchRestaurants extends Component {
                             onChange={e => this.props.searchRestaurants(e.target.value)}
                         />
                         <div className="input-group-append">
+
                             <Filter className="filter-by-state">
                                 <button
-                                    type="button"
                                     className="btn btn-primary dropdown-toggle"
+                                    type="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
-                                >
+                                    >
                                     Filter by state:  {byState} <span className="caret" />
                                 </button>
                                 <div className="sort-menu dropdown-menu dropdown-menu-right">
                                     {this.props.states.map((s, index) => (
-
+                                        
                                         <button
                                             key={index}
                                             className={'sort-by dropdown-item ' + (this.props.byState === s ? 'active' : '')}
@@ -59,11 +60,12 @@ class SearchRestaurants extends Component {
                                     ))}
                                 </div>
 
+ 
+
                             </Filter>
  
 
-
-
+                    
 
                             <Filter className='filter-by-genre'>
 
