@@ -1,7 +1,5 @@
-// import React, { Component } from './node_modules/react';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
 
 
 const Search = styled.div`
@@ -16,60 +14,58 @@ margin: 0 1%;
 
 class SearchRestaurants extends Component {
 
-
     render() {
         let byState = this.props.byState;
         console.log(byState)
         let byGenre = this.props.byGenre;
         console.log(byGenre)
+
+        
         return (
+
             <Search className="search-restaurants row justify-content-center my-4">
+
                 <div className="col-md-10">
+
                     <div className="input-group">
-                        
                         <input
-                        
                             id="SearchRestaurants"
                             type="text"
                             className="form-control"
                             aria-label="Search Restaurants"
                             onKeyDown={e => this.props.searchRestaurants(e.target.value, e.keyCode)}
-
-                            
                         />
+
                         <div className="input-group-append">
 
                             <Filter className="filter-by-state">
+
                                 <button
                                     className="btn btn-primary dropdown-toggle"
                                     type="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
-                                    >
+                                >
                                     Filter by state:  {byState} <span className="caret" />
+
                                 </button>
+
                                 <div className="sort-menu dropdown-menu dropdown-menu-right">
+
                                     {this.props.states.map((s, index) => (
-                                        
                                         <button
                                             key={index}
                                             className={'sort-by dropdown-item ' + (this.props.byState === s ? 'active' : '')}
                                             onClick={() => this.props.filterByState(s)}
                                             href="#" >
-
                                             {s}
                                         </button>
-
                                     ))}
+
                                 </div>
 
- 
-
                             </Filter>
- 
-
-                    
 
                             <Filter className='filter-by-genre'>
 
@@ -85,7 +81,6 @@ class SearchRestaurants extends Component {
 
                                 <div className="sort-menu dropdown-menu dropdown-menu-right">
                                     {this.props.genres.map((g, i) => (
-
                                         <button
                                             key={i}
                                             className={'sort-by dropdown-item ' + (this.props.byGenre === g ? 'active' : '')}
@@ -93,19 +88,16 @@ class SearchRestaurants extends Component {
                                             href="#" >
                                             {g}
                                         </button>
-
                                     ))}
                                 </div>
+
                             </Filter>
-
-
-
 
                         </div>
                     </div>
                 </div>
-            </Search >
 
+            </Search >
         );
     }
 }

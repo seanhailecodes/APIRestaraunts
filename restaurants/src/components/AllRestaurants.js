@@ -12,7 +12,6 @@ align-items: center;
 font-size: 1rem;
 `
 
-
 class AllRestaurants extends Component {
 
     render() {
@@ -22,11 +21,15 @@ class AllRestaurants extends Component {
         const data = this.props.restaurants;
         console.log(data)
         const columns = ['Name', 'City', 'State', 'Telephone', 'Genre']
+
+
         return (
+
             <div className="mb-3 item-list" >
                 {isEmpty ? (
-                    <div>No results were found...</div>
+                    <div>NO RESULTS FOUND</div>
                 ) :
+
                     <Table cellPadding={5} cellSpacing={5} className="table table-striped  table-responsive table-hover table-fit">
 
                         <thead>
@@ -51,19 +54,9 @@ class AllRestaurants extends Component {
                             ))}
 
                         </tbody>
+
                     </Table>
-
                 }
-
-
-                {/* {this.props.restaurants.map(item => (
-                    <div key={item.id} className='container text-center'>
-                        <FaBeer />
-                        <h3>Name: {item.name} | City: {item.city} | State: {item.state}  </h3>
-                        <h4>Phone Number: {item.telephone} | Genre: {item.genre}</h4>
-                    </div>
-                ))} */}
-
             </div>
         )
     }

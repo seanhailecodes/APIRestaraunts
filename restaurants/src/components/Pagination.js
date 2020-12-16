@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+
 const Nav = styled.nav`
 justify-content: center;
 display: block;
@@ -20,6 +21,7 @@ justify-content: center;
 `
 
 export default class Pagination extends Component {
+
     render() {
 
         const pageNumbers = [];
@@ -27,27 +29,28 @@ export default class Pagination extends Component {
             pageNumbers.push(i)
         }
 
+        
         return (
+
             <Nav>
+
                 <Ul className="pagination">
                     {pageNumbers.map((number, i) => (
                         <li
                             key={i}
                             className={'page-item ' + (this.props.currentPage === number ? 'active' : '')}>
-                            <a
+                                
+                            <button
                                 onClick={() => this.props.setCurrentPage(number)}
                                 className='page-link'
                             >
                                 {number}
-
-                            </a>
+                            </button>
                         </li>
-
                     ))}
                 </Ul>
+
             </Nav>
-
-
 
         );
     }

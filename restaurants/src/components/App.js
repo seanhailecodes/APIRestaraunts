@@ -1,10 +1,9 @@
-import React /*{ useState, useEffect }*/ from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import '../css/App.scss';
 import SearchRestaurants from './SearchRestaurants';
 import AllRestaurants from './AllRestaurants';
 import Pagination from './Pagination';
-import 'bootstrap/dist/js/bootstrap.bundle'
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 
 class App extends React.Component {
@@ -26,12 +25,10 @@ class App extends React.Component {
       itemsPerPage: 10
     };
 
-
     this.filterByState = this.filterByState.bind(this);
     this.filterByGenre = this.filterByGenre.bind(this);
     this.searchRestaurants = this.searchRestaurants.bind(this);
     this.setCurrentPage = this.setCurrentPage.bind(this);
-
   }
 
   setCurrentPage(currentPage) {
@@ -39,7 +36,6 @@ class App extends React.Component {
       currentPage: currentPage
     });
   }
-
 
   filterByState(byState) {
     this.setState({
@@ -56,14 +52,14 @@ class App extends React.Component {
   }
 
   searchRestaurants(guery, keyCode) {
-    console.log(guery + ' '+ keyCode)
-    if(keyCode == 13) {
-    this.setState({
-      queryText: guery,
-      currentPage: 1
-    });
+    if (keyCode === 13) {
+      this.setState({
+        queryText: guery,
+        currentPage: 1
+      });
+    }
   }
-  }
+
   componentDidMount() {
     fetch("https://code-challenge.spectrumtoolbox.com/api/restaurants", {
       headers: {
@@ -72,7 +68,6 @@ class App extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-
         const restaurants = result.map(item => {
           return item;
         });
@@ -99,8 +94,7 @@ class App extends React.Component {
 
   render() {
 
-    const { isLoaded, items, states, genres, itemsPerPage, currentPage } = this.state;
-
+    const { isLoaded, states, genres, itemsPerPage } = this.state;
     let order;
     let sortedItems = this.state.items;
 
@@ -140,6 +134,7 @@ class App extends React.Component {
       sortedFilteredItems = sortedItems.filter(item => item.state === this.state.byState);
     }
     if (this.state.byGenre === 'All') {
+      // eslint-disable-next-line
       sortedFilteredItems = sortedFilteredItems;
     } else {
       sortedFilteredItems = sortedFilteredItems.filter(item => item.genre.toLowerCase()
@@ -152,7 +147,8 @@ class App extends React.Component {
     let indexOfLastItem = this.state.currentPage * itemsPerPage;
     let indexOfFirstItem = indexOfLastItem - itemsPerPage;
     let currentItems = sortedFilteredItems.slice(indexOfFirstItem, indexOfLastItem)
-    
+
+
     return (
 
       <main className='page bg-white' id='ratings'>
@@ -160,6 +156,7 @@ class App extends React.Component {
           <div className='row'>
             <div className='col-mid-12 bg-white'>
               <div className='container'>
+
                 <SearchRestaurants
                   states={states}
                   genres={genres}
@@ -171,17 +168,16 @@ class App extends React.Component {
                   filterByGenre={this.filterByGenre}
                   searchRestaurants={this.searchRestaurants}
                 />
+
                 <AllRestaurants
                   restaurants={currentItems}
-
                 />
+
                 <Pagination
                   currentPage={this.state.currentPage}
                   itemsPerPage={itemsPerPage}
                   totalItems={sortedFilteredItems.length}
-
                   setCurrentPage={this.setCurrentPage}
-
                 />
 
               </div>
@@ -190,9 +186,9 @@ class App extends React.Component {
         </div>
 
       </main>
-
     );
   }
+
 }
 
 export default App;
