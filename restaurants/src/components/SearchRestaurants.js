@@ -19,8 +19,10 @@ class SearchRestaurants extends Component {
         console.log(byState)
         let byGenre = this.props.byGenre;
         console.log(byGenre)
+        let byAttire = this.props.byAttire;
+        console.log(byAttire)
 
-        
+
         return (
 
             <Search className="search-restaurants row justify-content-center my-4">
@@ -47,7 +49,7 @@ class SearchRestaurants extends Component {
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    Filter by state:  {byState} <span className="caret" />
+                                    Filter By State:  {byState} <span className="caret" />
 
                                 </button>
 
@@ -76,7 +78,7 @@ class SearchRestaurants extends Component {
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    Filter by genre: {this.props.byGenre} <span className="caret" />
+                                    Filter By Genre: {this.props.byGenre} <span className="caret" />
                                 </button>
 
                                 <div className="sort-menu dropdown-menu dropdown-menu-right">
@@ -93,6 +95,34 @@ class SearchRestaurants extends Component {
 
                             </Filter>
 
+                            <Filter className="filter-by-attire">
+
+                                <button
+                                    className="btn btn-primary dropdown-toggle"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
+                                    Filter By Attire:  {byAttire} <span className="caret" />
+
+                                </button>
+
+                                <div className="sort-menu dropdown-menu dropdown-menu-right">
+
+                                    {this.props.attire.map((s, index) => (
+                                        <button
+                                            key={index}
+                                            className={'sort-by dropdown-item ' + (this.props.byAttire === s ? 'active' : '')}
+                                            onClick={() => this.props.filterByAttire(s)}
+                                            href="#" >
+                                            {s}
+                                        </button>
+                                    ))}
+
+                                </div>
+
+                            </Filter>
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ class App extends React.Component {
       items: [],
       states: [],
       genres: [],
+      attire:[],
       isLoaded: false,
       orderBy: 'name',
       orderDir: 'asc',
@@ -28,6 +29,7 @@ class App extends React.Component {
     this.filterByState = this.filterByState.bind(this);
     this.filterByGenre = this.filterByGenre.bind(this);
     this.searchRestaurants = this.searchRestaurants.bind(this);
+    this.filterByAttire = this.filterByGenre.bind(this);
     this.setCurrentPage = this.setCurrentPage.bind(this);
   }
 
@@ -51,6 +53,12 @@ class App extends React.Component {
     });
   }
 
+  filterByAttire(byAttire) {
+    this.setState({
+      byAttire: byAttire,
+      currentPage: 1
+    });
+  }
   searchRestaurants(guery, keyCode) {
     if (keyCode === 13) {
       this.setState({
@@ -80,10 +88,15 @@ class App extends React.Component {
         let uniqueAndSortedGenres = [...new Set(genres)].sort()
         uniqueAndSortedGenres.unshift("All")
 
+        const attire = result.map(item => item.attire.split(",")).flat()
+        let uniqueAndSortedAttire = [...new Set(attire)].sort()
+        uniqueAndSortedAttire.unshift("All")
+
         this.setState({
           items: restaurants,
           states: uniqueAndSortedStates,
           genres: uniqueAndSortedGenres,
+          attire: uniqueAndSortedAttire,
           isLoaded: true,
         });
       }).catch((err) => {
@@ -94,7 +107,7 @@ class App extends React.Component {
 
   render() {
 
-    const { isLoaded, states, genres, itemsPerPage } = this.state;
+    const { isLoaded, states, genres, attire, itemsPerPage } = this.state;
     let order;
     let sortedItems = this.state.items;
 
@@ -123,7 +136,10 @@ class App extends React.Component {
           .includes(this.state.queryText.toLowerCase()) ||
         eachItem['genre']
           .toLowerCase()
-          .includes(this.state.queryText.toLowerCase())
+          .includes(this.state.queryText.toLowerCase()) ||
+        eachItem['attire']
+          .toLowerCase()
+          .includes(this.attire.queryText.toLowerCase())
       );
     });
 
@@ -160,12 +176,15 @@ class App extends React.Component {
                 <SearchRestaurants
                   states={states}
                   genres={genres}
+                  attire={attire}
 
                   byState={this.state.byState}
                   byGenre={this.state.byGenre}
+                  byAttire={this.state.byAttire}
 
                   filterByState={this.filterByState}
                   filterByGenre={this.filterByGenre}
+                  filterByAttire={this.filterByAttire}
                   searchRestaurants={this.searchRestaurants}
                 />
 
