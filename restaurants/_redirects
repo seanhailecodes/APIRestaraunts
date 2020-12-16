@@ -11,3 +11,4 @@
 /pass-through /index.html    200
 
 /seanhailecharter.netlify.app  /app/index.html  200!
+/app/index.html  /app        200
