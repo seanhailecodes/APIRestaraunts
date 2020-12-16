@@ -56,12 +56,14 @@ class App extends React.Component {
   }
 
   searchRestaurants(guery, keyCode) {
+    console.log(guery + ' '+ keyCode)
+    if(keyCode == 13) {
     this.setState({
       queryText: guery,
       currentPage: 1
     });
   }
-
+  }
   componentDidMount() {
     fetch("https://code-challenge.spectrumtoolbox.com/api/restaurants", {
       headers: {
