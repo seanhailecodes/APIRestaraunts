@@ -25,12 +25,12 @@ class SearchRestaurants extends Component {
 
         return (
 
-            <Search className="search-restaurants row justify-content-center my-4">
+            <Search className="search-restaurants row justify-content-center bg-light" style={{backgroundColor: "Success"}}>
 
                 <div className="col-md-10">
 
                     <div className="input-group">
-                        <input
+                        <input 
                             id="SearchRestaurants"
                             type="text"
                             className="form-control"
@@ -38,18 +38,18 @@ class SearchRestaurants extends Component {
                             onKeyDown={e => this.props.searchRestaurants(e.target.value, e.keyCode)}
                         />
 
-                        <div className="input-group-append">
+                        <div className="input-group-append" >
 
                             <Filter className="filter-by-state">
 
                                 <button
-                                    className="btn btn-primary dropdown-toggle"
+                                    className="btn dropdown-toggle"
                                     type="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    Filter By State:  {byState} <span className="caret" />
+                                    Filter By State:  {byState} <span className="caret" /> 
 
                                 </button>
 
@@ -72,8 +72,9 @@ class SearchRestaurants extends Component {
                             <Filter className='filter-by-genre'>
 
                                 <button
+                                    style={{backgroundColor:'success', color: "black"}}
                                     type="button"
-                                    className="btn btn-primary dropdown-toggle"
+                                    className="btn dropdown-toggle"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
@@ -98,7 +99,8 @@ class SearchRestaurants extends Component {
                             <Filter className="filter-by-attire">
 
                                 <button
-                                    className="btn btn-primary dropdown-toggle"
+                                    style={{backgroundColor:'success', color: "black"}}
+                                    className="btn  dropdown-toggle"
                                     type="button"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"

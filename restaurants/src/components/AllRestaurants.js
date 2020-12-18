@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { FaBeer } from "react-icons/fa";
 import styled from 'styled-components';
 
 
@@ -32,8 +31,8 @@ class AllRestaurants extends Component {
 
                     <Table cellPadding={5} cellSpacing={5} className="table table-striped  table-responsive table-hover table-fit">
 
-                        <thead>
-                            <tr className="bg-primary">
+                        <thead >
+                            <tr className="bg-success" font-family='cursive'>
                                 {columns.map((heading, i) => <th key={i}>{heading}</th>)}
                             </tr>
                         </thead>

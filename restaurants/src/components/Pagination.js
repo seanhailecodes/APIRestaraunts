@@ -9,7 +9,7 @@ margin: 0 auto;
 align-items: center;
 font-size: 1;
 &:hover{
-    background-color: red;
+    background-color: light grey;
 }
 `
 const Ul = styled.ul`
@@ -41,6 +41,7 @@ export default class Pagination extends Component {
                             className={'page-item ' + (this.props.currentPage === number ? 'active' : '')}>
                                 
                             <button
+                                style={{backgroundColor:'#28A744', color: "black"}}
                                 onClick={() => this.props.setCurrentPage(number)}
                                 className='page-link'
                             >

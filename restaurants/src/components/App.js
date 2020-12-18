@@ -4,6 +4,7 @@ import SearchRestaurants from './SearchRestaurants';
 import AllRestaurants from './AllRestaurants';
 import Pagination from './Pagination';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import "../css/App.css";
 
 
 class App extends React.Component {
@@ -164,16 +165,17 @@ class App extends React.Component {
     let indexOfFirstItem = indexOfLastItem - itemsPerPage;
     let currentItems = sortedFilteredItems.slice(indexOfFirstItem, indexOfLastItem)
 
-
     return (
 
-      <main className='page bg-white' id='ratings'>
+      <main className='page bg-success' id='ratings' >
+        
         <div className='container'>
           <div className='row'>
-            <div className='col-mid-12 bg-white'>
+            <div className='col-mid-12 bg-white' >
               <div className='container'>
 
                 <SearchRestaurants
+                
                   states={states}
                   genres={genres}
                   attire={attire}
@@ -189,6 +191,7 @@ class App extends React.Component {
                 />
 
                 <AllRestaurants
+                
                   restaurants={currentItems}
                 />
 
