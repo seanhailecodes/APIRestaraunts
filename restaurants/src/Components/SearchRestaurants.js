@@ -49,7 +49,7 @@ class SearchRestaurants extends Component {
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    Filter By State:  {byState} <span className="caret" /> 
+                                    Filter By State, Tanner, Nat DOGG, Chris:  {byState} <span className="caret" /> 
 
                                 </button>
 
