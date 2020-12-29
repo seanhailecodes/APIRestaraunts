@@ -110,7 +110,7 @@ class SearchRestaurants extends Component {
 
                                 </button>
 
-                                {/* <div className="sort-menu dropdown-menu dropdown-menu-right">
+                                <div className="sort-menu dropdown-menu dropdown-menu-right">
 
                                     {this.props.attire.map((s, index) => (
                                         <button
@@ -122,7 +122,7 @@ class SearchRestaurants extends Component {
                                         </button>
                                     ))}
 
-                                </div> */}
+                                </div>
 
                             </Filter>
                         </div>
